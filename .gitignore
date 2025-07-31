@@ -7,6 +7,7 @@ logs/
 metabase.db.mv.db
 metabase.db.trace.db
 plugins/
+*.jar
 
 # DuckDB files
 *.duckdb
