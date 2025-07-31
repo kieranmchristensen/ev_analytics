@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: public  # this must match the first argument in source()
+    tables:
+      - name: raw_ev_worldwide  # this must match the actual Postgres table name
+
+models:
+  - name: stg_ev_worldwide
+    description: "Global EV sales data by country and year"
+    columns:
+      - name: country
+        description: "Country name"
+      - name: year
+        description: "Calendar year"
+      - name: bev_sales
+        description: "Battery electric vehicle sales"
+      - name: phev_sales
+        description: "Plug-in hybrid electric vehicle sales"
+      - name: bev_share
+        description: "BEV share of total vehicle sales"
+      - name: phev_share
+        description: "PHEV share of total vehicle sales"
+      - name: total_ev_sales
+        description: "Total EV sales (BEV + PHEV)"
+      - name: total_market
+        description: "Total vehicle market size"
