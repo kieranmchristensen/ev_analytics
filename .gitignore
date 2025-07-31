@@ -3,9 +3,10 @@ target/
 dbt_packages/
 logs/
 
-# Metabase local DBs
+# Metabase local DBs & plugins
 metabase.db.mv.db
 metabase.db.trace.db
+plugins/
 
 # DuckDB files
 *.duckdb
