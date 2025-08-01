@@ -2,7 +2,7 @@ version: 2
 
 seeds:
   - name: EV_worldwide.csv
-    description: "Worldwide data on EV registration, charging points, energy demand impacts aggregated by year"
+    description: "Worldwide data on EV registration, charging points, energy demand impacts aggregated by year. Sourced from International Energy Agency (IEA) Global EV Data Explorer. https://www.iea.org/data-and-statistics/data-tools/global-ev-data-explorer"
     columns:
 	- name: region_country
 	description: "Country or region aggregate name"
@@ -31,7 +31,7 @@ seeds:
 
       
   - name: ev_statscan.csv
-    description: "Canadian zero-emission vehicle registrations by quarter"
+    description: "Canadian zero-emission vehicle registrations by quarter. Sourced from Statistics Canada new motor vehicle registrations https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=2010002501"
     columns:
 	- name: ref_date
 	description: "Reference date (quarter)"
