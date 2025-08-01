@@ -1,0 +1,88 @@
+version: 2
+
+seeds:
+  - name: EV_worldwide.csv
+    description: "Worldwide data on EV registration, charging points, energy demand impacts aggregated by year"
+    columns:
+	- name: region_country
+	description: "Country or region aggregate name"
+	data_type: text
+	- name: category
+	description: "Value category (projection or historical)"
+	data_type: text
+	- name: parameter
+	description: "Value parameter (EV sales, stock, share, charging points, stock share; battery demand, Oil displacement, electricity demand)"
+	data_type: text
+	- name: mode
+	description: "Vehicle type (2 and 3 wheelers, Cars, Buses, Vans)"
+	data_type: text
+	- name: powertrain
+	description: "Vehicle powertrain (BEV, PHEV, FCEV, EV) OR charger type (publicly available fast, publicly available slow)"
+	data_type: text
+	- name: unit
+	description: "Unit of the value column (GWh, Oil displacement, million lge, Million barrels per day, percent, charging points, Vehicles)"
+	data_type: text
+	- name: value
+	description: "Integer associated with the respective unit type"
+	data_type: integer
+	- name: Aggregate group
+	description: "Other"
+	data_type: text
+
+      
+  - name: ev_statscan.csv
+    description: "Canadian zero-emission vehicle registrations by quarter"
+    columns:
+	- name: ref_date
+	description: "Reference date (quarter)"
+	data_type: date
+	- name: geo
+	description: "Country or province/territory name"
+	data_type: text
+	- name: DGUID
+	description: "Unknown"
+	data_type: text
+	- name: Fuel type
+	description: "Vehicle fuel type"
+	data_type: text
+	- name: Vehicle type
+	description: "Vehicle type"
+	data_type: text
+	- name: Statistics
+	description: "Descriptor for the value column"
+	data_type: text
+	- name: UOM
+	description: "Unit of measurement"
+	data_type: text
+	- name: UOM_ID
+	description: "Unit of measurement ID"
+	data_type: integer
+	- name: SCALAR_FACTOR
+	description: "Scalar factor for value column"
+	data_type: text
+	- name: SCALAR_ID
+	description: "Scalar factor ID"
+	data_type: integer
+	- name: VECTOR
+	description: "Unknown"
+	data_type: text
+	- name: COORDINATE
+	description: "Coordinate value associated with GEO column"
+	value: integer
+	- name: VALUE
+	description: "Value specified in Statistics column"
+	data_type: integer
+	- name: STATUS
+	description: "Unknown"
+	data_type: text
+	- name: SYMBOL
+	description: "Unknown"
+	data_type: text
+	- name: TERMINATED
+	description: "Unknown"
+	data_type: text
+	- name: Decimals
+	description: "Decimal places of Value column"
+	data_type: integer
+	
+

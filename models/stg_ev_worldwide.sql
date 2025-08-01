@@ -10,5 +10,5 @@ powertrain,
 unit,
 value,
 "Aggregate group" as aggregate_group
-FROM public.raw_ev_worldwide
+FROM {{ ref('raw_ev_worldwide') }}
 WHERE year IS NOT NULL

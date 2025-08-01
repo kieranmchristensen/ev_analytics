@@ -1,27 +1,76 @@
 version: 2
 
-sources:
-  - name: public  # this must match the first argument in source()
-    tables:
-      - name: raw_ev_worldwide  # this must match the actual Postgres table name
-
 models:
-  - name: stg_ev_worldwide
-    description: "Global EV sales data by country and year"
+  - name: raw_ev_worldwide
+    description: "Raw view pulling directly from the ev_worldwide seed (all worldwide EV data as provided, unmodified)."
     columns:
-      - name: country
-        description: "Country name"
+      - name: region_country
+        description: "Name of the region or country."
+      - name: category
+        description: "Data type category (e.g. production, sales)."
       - name: year
-        description: "Calendar year"
-      - name: bev_sales
-        description: "Battery electric vehicle sales"
-      - name: phev_sales
-        description: "Plug-in hybrid electric vehicle sales"
-      - name: bev_share
-        description: "BEV share of total vehicle sales"
-      - name: phev_share
-        description: "PHEV share of total vehicle sales"
-      - name: total_ev_sales
-        description: "Total EV sales (BEV + PHEV)"
-      - name: total_market
-        description: "Total vehicle market size"
+        description: "Year of record as provided in source."
+      - name: parameter
+        description: "The specific EV metric (e.g. number of vehicles, % share)."
+      - name: mode
+        description: "Mode of transport, if specified."
+      - name: powertrain
+        description: "Powertrain type (e.g. BEV, PHEV, hybrid)."
+      - name: unit
+        description: "Unit of measure (e.g. units, %)."
+      - name: value
+        description: "Recorded metric value."
+      - name: Aggregate group
+        description: "Aggregate group label from source."
+
+  - name: raw_zev_registrations
+    description: "Raw view pulling directly from the ev_statscan seed (Canadian zero-emission vehicle data as provided)."
+    columns:
+      - name: ref_date
+        description: "Reference period (YYYY-MM format)."
+      - name: geo
+        description: "Province or territory name."
+      - name: value
+        description: "Number of zero-emission vehicles registered."
+
+  - name: stg_ev_worldwide
+    description: "Cleaned worldwide EV data. Adds year_date and filters nulls."
+    columns:
+      - name: region_country
+        description: "Name of the region or country."
+      - name: data_type
+        description: "Category renamed from raw category column."
+      - name: year
+        description: "Year as integer."
+      - name: year_date
+        description: "January 1st of that year (converted to DATE)."
+      - name: parameter
+        description: "The specific EV metric (e.g. number of vehicles, % share)."
+      - name: mode
+        description: "Mode of transport."
+      - name: powertrain
+        description: "Powertrain type."
+      - name: unit
+        description: "Unit of measure."
+      - name: value
+        description: "Recorded metric value."
+      - name: aggregate_group
+        description: "Aggregate grouping label."
+
+  - name: stg_zev_registrations
+    description: "Cleaned Canadian EV registrations. Adds year, fiscal quarter, and quarter label."
+    columns:
+      - name: ref_date_string
+        description: "Original YYYY-MM string value for date."
+      - name: ref_date
+        description: "Converted DATE from ref_date_string (first of month)."
+      - name: year
+        description: "Extracted calendar year."
+      - name: fiscal_quarter
+        description: "Derived fiscal quarter (1–4)."
+      - name: fiscal_period_label
+        description: "Label like Q1 2023."
+      - name: province
+        description: "Province name."
+      - name: units
+        description: "Number of ZEV registrations (nulls coerced to 0)."
